@@ -1,23 +1,25 @@
 <script lang="ts">
-import { beforeNavigate } from "$app/navigation";
-
+  import { beforeNavigate } from "$app/navigation";
+  import { minhaLista } from "$lib/stores/minhaLista";
   import Categoria from "$lib/components/Categoria.svelte";
   import Tag from "$lib/components/Tag.svelte";
   import Titulo from "$lib/components/Titulo.svelte";
   import categorias from "$lib/json/categorias.json";
 
-  beforeNavigate(()=>{
-    
-  })
-  </script>
+  $:listaVazia = $minhaLista.length === 0
+
+  beforeNavigate((navigation) => {
+    if (listaVazia && navigation.to?.pathname === '/receitas') {
+      navigation.cancel();
+    }
+  });
+</script>
 
 <svelte:head>
   <title>Alura Cook</title>
 </svelte:head>
 
-<div class="minha-lista-container">
-
-</div>
+<div class="minha-lista-container" />
 
 <main>
   <Titulo tag={"h1"}>Ingredientes</Titulo>
@@ -35,7 +37,7 @@ import { beforeNavigate } from "$app/navigation";
   </ul>
   <div class="buscar-receitas">
     <a href="/receitas">
-      <Tag ativa={true} tamanho={"lg"}>Buscar Receitas</Tag>
+      <Tag ativa={true} tamanho={"lg"} desabilitado={listaVazia}>Buscar Receitas</Tag>
     </a>
   </div>
 </main>
@@ -44,7 +46,6 @@ import { beforeNavigate } from "$app/navigation";
   .minha-lista-container {
     margin-bottom: 2rem;
   }
-
 
   .info {
     margin-bottom: 3.375rem;

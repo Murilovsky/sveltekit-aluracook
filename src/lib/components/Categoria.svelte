@@ -1,36 +1,36 @@
 <script lang="ts">
   import type ICategoria from "$lib/interfaces/ICategoria";
+import Card from "./Card.svelte";
   import IngredienteSelectable from "./IngredienteSelectable.svelte";
 
   export let categoria: ICategoria;
 </script>
 
-<div class="categoria-container">
-  <img
-    class="categoria-imagem"
-    src="/icones/categorias_ingredientes/{categoria.imagem}"
-    alt={categoria.nome}
-  />
-
-  <h3 class="categoria-nome">{categoria.nome}</h3>
-
-  <ul class="ingredientes">
-    {#each categoria.ingredientes as ingrediente (ingrediente)}
-      <li>
-        <IngredienteSelectable {ingrediente}>
-          {ingrediente}
-        </IngredienteSelectable>
-      </li>
-    {/each}
-  </ul>
-</div>
+<Card>
+  <div class="categoria-container">
+    <img
+      class="categoria-imagem"
+      src="/icones/categorias_ingredientes/{categoria.imagem}"
+      alt={categoria.nome}
+    />
+  
+    <h3 class="categoria-nome">{categoria.nome}</h3>
+  
+    <ul class="ingredientes">
+      {#each categoria.ingredientes as ingrediente (ingrediente)}
+        <li>
+          <IngredienteSelectable {ingrediente}>
+            {ingrediente}
+          </IngredienteSelectable>
+        </li>
+      {/each}
+    </ul>
+  </div>
+</Card>
 
 <style>
   .categoria-container {
-    width: 300px;
-    min-height: 100%;
-    background: var(--branco);
-    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.1);
+
     padding: 0.75rem 0.5rem;
   }
 
