@@ -1,7 +1,7 @@
 <script lang="ts">
   import type ICategoria from "$lib/interfaces/ICategoria";
-import Card from "./Card.svelte";
-  import IngredienteSelectable from "./IngredienteSelectable.svelte";
+  import Card from "$lib/components/diversos/Card.svelte";
+  import IngredienteSelectable from "$lib/components/IngredienteSelectable.svelte";
 
   export let categoria: ICategoria;
 </script>
@@ -13,9 +13,9 @@ import Card from "./Card.svelte";
       src="/icones/categorias_ingredientes/{categoria.imagem}"
       alt={categoria.nome}
     />
-  
+
     <h3 class="categoria-nome">{categoria.nome}</h3>
-  
+
     <ul class="ingredientes">
       {#each categoria.ingredientes as ingrediente (ingrediente)}
         <li>
@@ -30,7 +30,6 @@ import Card from "./Card.svelte";
 
 <style>
   .categoria-container {
-
     padding: 0.75rem 0.5rem;
   }
 

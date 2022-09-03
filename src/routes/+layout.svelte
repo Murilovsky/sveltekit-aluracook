@@ -1,10 +1,11 @@
 <script>
+  import '../app.css'
   import { quadIn } from "svelte/easing";
   import { minhaLista } from "$lib/stores/minhaLista";
   import { fade } from "svelte/transition";
-  import Cabecalho from "$lib/components/Cabecalho.svelte";
+  import Cabecalho from "$lib/components/layout/Cabecalho.svelte";
   import MinhaLista from "$lib/components/MinhaLista.svelte";
-  import Rodape from "$lib/components/Rodape.svelte";
+  import Rodape from "$lib/components/layout/Rodape.svelte";
 </script>
 
 <div class="container-principal">

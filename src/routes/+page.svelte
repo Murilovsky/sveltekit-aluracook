@@ -2,14 +2,14 @@
   import { beforeNavigate } from "$app/navigation";
   import { minhaLista } from "$lib/stores/minhaLista";
   import Categoria from "$lib/components/Categoria.svelte";
-  import Tag from "$lib/components/Tag.svelte";
   import Titulo from "$lib/components/Titulo.svelte";
   import categorias from "$lib/json/categorias.json";
+  import LinkTag from "$lib/components/diversos/LinkTag.svelte";
 
-  $:listaVazia = $minhaLista.length === 0
+  $: listaVazia = $minhaLista.length === 0;
 
   beforeNavigate((navigation) => {
-    if (listaVazia && navigation.to?.pathname === '/receitas') {
+    if (listaVazia && navigation.to?.pathname === "/receitas") {
       navigation.cancel();
     }
   });
@@ -22,7 +22,7 @@
 <div class="minha-lista-container" />
 
 <main>
-  <Titulo tag={"h1"}>Ingredientes</Titulo>
+  <Titulo tag={"h3"}>Ingredientes</Titulo>
   <div class="info">
     <p>Selecione abaixo os ingredientes que você deseja usar nesta refeição:</p>
     <p>*Atenção: consideramos que você tenha em casa sal, pimenta e água.</p>
@@ -36,9 +36,7 @@
     {/each}
   </ul>
   <div class="buscar-receitas">
-    <a href="/receitas">
-      <Tag ativa={true} tamanho={"lg"} desabilitado={listaVazia}>Buscar Receitas</Tag>
-    </a>
+    <LinkTag href="receitas" desabilitado={listaVazia}>Buscar Receitas</LinkTag>
   </div>
 </main>
 
